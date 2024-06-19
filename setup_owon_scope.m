@@ -1,10 +1,12 @@
 function [os]  = setup_owon_scope(varargin)
 % Input arguments check
+warning('off', 'MATLAB:visa:visa:WillBeRemoved');
+
 os = check_args(nargin,varargin);
 % Create a VISA-USB scope object
 % os.obj = instrfind('Type', 'visa-usb', 'RsrcName', 'USB0::0x5345::0x1235::2018208::0::INSTR', 'Tag', '');
-if isempty(os.obj)
-    os.obj = visa('NI', 'USB0::0x5345::0x1235::2018208::0::INSTR');
+if isempty(os.obj) 
+    os.obj = visa('NI', 'USB0::0x5345::0x1235::2018208::0::INSTR'); %
 else
     fclose(os.obj);
     os.obj = os.obj(1);
